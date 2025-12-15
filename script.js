@@ -17,13 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
         mainApp.classList.add('active');
 
         if (mode === 'voice-scribe') {
-            currentModeTitle.textContent = "SpeakIT";
+            currentModeTitle.textContent = "Whisper";
             sectionVoiceScribe.classList.add('active'); // CSS Handles display
             sectionVoiceScribe.style.display = 'block';
             sectionVoiceBox.classList.remove('active');
             sectionVoiceBox.style.display = 'none';
         } else {
-            currentModeTitle.textContent = "HearIT";
+            currentModeTitle.textContent = "Echo";
             sectionVoiceBox.classList.add('active');
             sectionVoiceBox.style.display = 'block';
             sectionVoiceScribe.classList.remove('active');
