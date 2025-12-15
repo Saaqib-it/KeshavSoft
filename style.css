@@ -585,3 +585,8 @@ button.secondary-btn,
     margin-top: auto;
     width: 100%;
 }
+
+/* Hide footer when app functionality is active */
+.app-container.active~.footer {
+    display: none;
+}
