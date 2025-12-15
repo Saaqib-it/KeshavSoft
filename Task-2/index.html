@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pluto</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="main-container">
+
+        <!-- Landing Page Section -->
+        <div id="landing-page" class="landing-container active">
+            <header class="landing-header">
+                <h1>Pluto</h1>
+                <p>Choose your mode to get started</p>
+            </header>
+
+            <div class="card-grid">
+                <div class="selection-card" onclick="startApp('voice-scribe')">
+                    <div class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                            <line x1="12" x2="12" y1="19" y2="22" />
+                        </svg>
+                    </div>
+                    <h2>SpeakIT</h2>
+                    <p>Convert your speech into text instantly.</p>
+                </div>
+
+                <div class="selection-card" onclick="startApp('voice-box')">
+                    <div class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                            <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+                            <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+                        </svg>
+                    </div>
+                    <h2>HearIT</h2>
+                    <p>Turn your text into lifelike speech.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Application Section (Hidden by default) -->
+        <div id="main-app" class="app-container hidden">
+            <header class="app-header">
+                <button class="back-btn" onclick="goBackToMenu()">
+                    <span>←</span> Back
+                </button>
+                <div class="header-title">
+                    <h2 id="current-mode-title">Mode Name</h2>
+                </div>
+                <div class="placeholder"></div> <!-- For layout balance -->
+            </header>
+
+            <main id="app-content">
+                <!-- Voice Scribe Section (Voice to Text) -->
+                <section id="section-voice-scribe" class="mode-section">
+                    <div class="glass-card">
+                        <div class="content-wrapper">
+                            <div class="visualizer-container">
+                                <div id="mic-btn" class="mic-button">
+                                    <div class="mic-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                            viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+                                            <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                                            <line x1="12" x2="12" y1="19" y2="22" />
+                                        </svg>
+                                    </div>
+                                    <div class="pulse-ring"></div>
+                                </div>
+                                <p id="recording-status">Tap directly on the microphone to start listening</p>
+                            </div>
+                            <div class="text-area-container">
+                                <textarea id="voice-text-output" placeholder="Your speech will appear here..."
+                                    readonly></textarea>
+                                <div class="actions">
+                                    <button class="action-btn copy-btn" onclick="copyText('voice-text-output')">Copy
+                                        Text</button>
+                                    <button class="action-btn clear-btn"
+                                        onclick="clearText('voice-text-output')">Clear</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Voice Box Section (Text to Voice) -->
+                <section id="section-voice-box" class="mode-section">
+                    <div class="glass-card voice-box-card">
+                        <div class="vb-content">
+                            <!-- Voice Selection Header -->
+                            <div class="vb-header">
+                                <div class="select-wrapper">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="select-icon">
+                                        <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+                                        <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                                        <line x1="12" x2="12" y1="19" y2="22" />
+                                    </svg>
+                                    <select id="voice-select">
+                                        <option value="" disabled selected>Select a Voice...</option>
+                                    </select>
+                                    <div class="select-arrow">▼</div>
+                                </div>
+                            </div>
+
+                            <!-- Main Input Area -->
+                            <div class="vb-main">
+                                <textarea id="text-voice-input"
+                                    placeholder="Type something here to convert to speech..."></textarea>
+                            </div>
+
+                            <!-- Controls Footer -->
+                            <div class="vb-footer">
+                                <div class="vb-sliders">
+                                    <div class="slider-item">
+                                        <span class="label">Speed</span>
+                                        <input type="range" id="rate-range" min="0.5" max="2" value="1" step="0.1">
+                                    </div>
+                                    <div class="slider-item">
+                                        <span class="label">Pitch</span>
+                                        <input type="range" id="pitch-range" min="0.5" max="2" value="1" step="0.1">
+                                    </div>
+                                </div>
+
+                                <div class="vb-buttons">
+                                    <button id="speak-btn" class="primary-btn pulse-on-hover">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                            <polygon points="5 3 19 12 5 21 5 3" />
+                                        </svg>
+                                        Speak
+                                    </button>
+                                    <button id="stop-btn" class="secondary-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

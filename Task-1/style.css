@@ -1,0 +1,211 @@
+:root {
+    --bg-gradient: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+    --primary-color: #6b9faa;
+    --primary-glow: rgba(59, 130, 246, 0.4);
+    --text-color: #f1f5f9;
+    --text-muted: #94a3b8;
+    --card-bg: rgba(30, 41, 59, 0.6);
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+    --font-family: 'Outfit', sans-serif;
+    --danger-color: #ef4444;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background: var(--bg-gradient);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 650px;
+    padding: 1.5rem;
+    /* Reduced padding */
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    /* Reduced gap from 2.5rem */
+}
+
+header {
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+    /* Reduced margin */
+    background: linear-gradient(to right, #60a5fa, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+header p {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    /* Reduced gap from 3rem */
+}
+
+.control-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    /* Reduced gap */
+}
+
+.mic-button {
+    width: 80px;
+    /* Slightly smaller */
+    height: 80px;
+    border-radius: 50%;
+    border: none;
+    background: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+}
+
+.mic-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(59, 130, 246, 0.5);
+}
+
+.mic-button.listening {
+    background: var(--danger-color);
+    box-shadow: 0 0 0 rgba(239, 68, 68, 0.5);
+    animation: pulse-red 2s infinite;
+}
+
+@keyframes pulse-red {
+    0% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.5);
+    }
+
+    70% {
+        box-shadow: 0 0 0 25px rgba(239, 68, 68, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+    }
+}
+
+.status-text {
+    font-size: 1rem;
+    /* Smaller font */
+    font-weight: 500;
+    color: var(--text-color);
+    opacity: 0.8;
+    min-height: 1.2em;
+}
+
+/* Glassmorphism for Text Area */
+.output-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 1.5rem;
+    /* Reduced padding */
+    border: var(--glass-border);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    /* Reduced gap */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.output-container:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+textarea {
+    width: 100%;
+    min-height: 150px;
+    /* Reduced from 250px */
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    font-family: var(--font-family);
+    font-size: 1.15rem;
+    line-height: 1.5;
+    resize: vertical;
+    outline: none;
+}
+
+textarea::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    border-top: var(--glass-border);
+    padding-top: 1rem;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 12px;
+    border: var(--glass-border);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.action-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.footer {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+@media (max-width: 480px) {
+    .app-container {
+        padding: 1.5rem;
+        gap: 2rem;
+    }
+
+    main {
+        gap: 2rem;
+    }
+}

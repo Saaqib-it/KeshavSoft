@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice to Text | Converter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <h1>SpeakIT</h1>
+            <p><br>Speak clearly, we'll handle the text.</p>
+        </header>
+
+        <main>
+            <div class="control-panel">
+                <button id="micBtn" class="mic-button" aria-label="Start Recording">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.66 9 5v6c0 1.66 1.34 3 3 3z" />
+                        <path
+                            d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z" />
+                    </svg>
+                    <div class="pulse-ring"></div>
+                </button>
+                <div id="status" class="status-text">Tap to Speak</div>
+            </div>
+
+            <!-- Added Spacer/Gap via CSS, but structure is sequential -->
+
+            <div class="output-container">
+                <textarea id="transcript" placeholder="Your speech will appear here..." readonly></textarea>
+                <div class="action-buttons">
+                    <button id="copyBtn" class="action-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <path
+                                d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
+                        </svg>
+                        Copy
+                    </button>
+                    <button id="clearBtn" class="action-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+                        </svg>
+                        Clear
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Transcribed by Saaqib</p>
+            <p><br>© 2025 SpeakIt </p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
